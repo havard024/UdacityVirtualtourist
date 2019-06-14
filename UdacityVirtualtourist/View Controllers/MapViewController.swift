@@ -7,24 +7,33 @@
 //
 
 import UIKit
+import MapKit
 
 class MapViewController: UIViewController {
 
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var mapView: MKMapView!
+    
+    // MARK: - Properties for MapView
+    private let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
+    private let regionRadius: CLLocationDistance = 1000
+
+    // MARK: - View Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.centerMapOnLocation(location: initialLocation)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // MARK: - IBActions
+    
+    // MARK: - Helper Functions
+    
+    func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
+                                                  latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+        mapView.setRegion(coordinateRegion, animated: true)
     }
-    */
 
 }
