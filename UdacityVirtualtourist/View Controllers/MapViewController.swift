@@ -25,10 +25,22 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.centerMapOnLocation(location: initialLocation)
-        self.addDummyAnnotation(coordinate: dummyAnnotationCoordinate)
+        self.addAnnotation(coordinate: dummyAnnotationCoordinate)
     }
     
     // MARK: - IBActions
+    
+    @IBAction func handleTap(_ sender: UITapGestureRecognizer) {
+        let location = sender.location(in: mapView)
+        debugPrint("handleTap: location \(location)")
+        handleGesture(location: location)
+    }
+    
+    @IBAction func handleLongPress(_ sender: UILongPressGestureRecognizer) {
+        let location = sender.location(in: mapView)
+        debugPrint("handleLongPress: location \(location)")
+        handleGesture(location: location)
+    }
     
     // MARK: - Helper Functions
     
@@ -38,10 +50,25 @@ class MapViewController: UIViewController {
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
-    func addDummyAnnotation(coordinate: CLLocationCoordinate2D) {
+    func addAnnotation(coordinate: CLLocationCoordinate2D) {
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
         mapView.addAnnotation(annotation)
+        debugPrint("addAnnotation: coordinate \(coordinate)")
     }
-
+    
+    func handleGesture(location: CGPoint) {
+        let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
+        #warning("Is this a safe way to detect if map annotation was clicked?")
+        if let subview = mapView.hitTest(location, with: nil) {
+            debugPrint("Clicked on subview: \(subview)")
+            if subview.isKind(of: NSClassFromString("_MKBezierPathView")!) {
+                debugPrint("Clicked on existing annotation don't add a new!")
+            } else {
+                addAnnotation(coordinate: coordinate)
+            }
+        } else {
+            // Can this happen? Assume not
+        }
+    }
 }
