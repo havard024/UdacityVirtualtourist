@@ -29,5 +29,6 @@ class PhotoAlbumViewController: UIViewController {
         let coordinate = selectedAnnotation.coordinate
         mapView.centerMapOnLocation(location: CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude), regionRadius: 100)
         mapView.addAnnotation(selectedAnnotation)
+        mapView.disableUserInteraction()
     }
 }

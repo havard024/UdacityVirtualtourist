@@ -21,4 +21,10 @@ extension MKMapView {
         self.addAnnotation(annotation)
         debugPrint("addPointAnnotation: coordinate \(coordinate)")
     }
+    
+    func disableUserInteraction() {
+        self.isZoomEnabled = false;
+        self.isScrollEnabled = false;
+        self.isUserInteractionEnabled = false;
+    }
 }
