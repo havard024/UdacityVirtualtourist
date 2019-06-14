@@ -26,6 +26,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         self.centerMapOnLocation(location: initialLocation)
         self.addAnnotation(coordinate: dummyAnnotationCoordinate)
+        mapView.delegate = self
     }
     
     // MARK: - IBActions
@@ -70,5 +71,13 @@ class MapViewController: UIViewController {
         } else {
             // Can this happen? Assume not
         }
+    }
+}
+
+// MARK: - MKMapViewDelegate
+
+extension MapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        performSegue(withIdentifier: "photoAlbum", sender: nil)
     }
 }
