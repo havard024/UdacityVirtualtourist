@@ -56,15 +56,55 @@
 		0431993622B4071700E82D69 /* UdacityVirtualtourist */ = {
 			isa = PBXGroup;
 			children = (
+				0431995022B4077000E82D69 /* Models */,
 				0431993722B4071700E82D69 /* AppDelegate.swift */,
-				0431993922B4071700E82D69 /* ViewController.swift */,
-				0431993B22B4071700E82D69 /* Main.storyboard */,
-				0431994122B4071800E82D69 /* Assets.xcassets */,
-				0431994322B4071800E82D69 /* LaunchScreen.storyboard */,
-				0431994622B4071800E82D69 /* Info.plist */,
-				0431993E22B4071700E82D69 /* UdacityVirtualtourist.xcdatamodeld */,
+				0431994C22B4073900E82D69 /* View Controllers */,
+				0431994D22B4074B00E82D69 /* Storyboards */,
+				0431994E22B4075300E82D69 /* Assets */,
+				0431994F22B4076400E82D69 /* Supporting Files */,
 			);
 			path = UdacityVirtualtourist;
+			sourceTree = "<group>";
+		};
+		0431994C22B4073900E82D69 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				0431993922B4071700E82D69 /* ViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		0431994D22B4074B00E82D69 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0431993B22B4071700E82D69 /* Main.storyboard */,
+				0431994322B4071800E82D69 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		0431994E22B4075300E82D69 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				0431994122B4071800E82D69 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		0431994F22B4076400E82D69 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				0431994622B4071800E82D69 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0431995022B4077000E82D69 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0431993E22B4071700E82D69 /* UdacityVirtualtourist.xcdatamodeld */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,7 +328,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XRW2FSQ9QP;
-				INFOPLIST_FILE = UdacityVirtualtourist/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/UdacityVirtualtourist/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,7 +346,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XRW2FSQ9QP;
-				INFOPLIST_FILE = UdacityVirtualtourist/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/UdacityVirtualtourist/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
