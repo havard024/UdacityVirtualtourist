@@ -7,24 +7,27 @@
 //
 
 import UIKit
+import MapKit
 
 class PhotoAlbumViewController: UIViewController {
 
+    var selectedAnnotation: MKPointAnnotation?
+    
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var mapView: MKMapView!
+    
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        guard let selectedAnnotation = selectedAnnotation else {
+            preconditionFailure("You need to set the selectedAnnotation in this view controller else this view is rendered useless.")
+        }
+        
+        let coordinate = selectedAnnotation.coordinate
+        mapView.centerMapOnLocation(location: CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude), regionRadius: 100)
+        mapView.addAnnotation(selectedAnnotation)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

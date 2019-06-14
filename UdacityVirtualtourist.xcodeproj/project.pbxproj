@@ -14,6 +14,7 @@
 		0431994522B4071800E82D69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0431994322B4071800E82D69 /* LaunchScreen.storyboard */; };
 		0431995222B40B4B00E82D69 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431995122B40B4B00E82D69 /* MapViewController.swift */; };
 		0431995622B418DF00E82D69 /* PhotoAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431995522B418DF00E82D69 /* PhotoAlbumViewController.swift */; };
+		0431995922B41D5D00E82D69 /* MapView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431995822B41D5D00E82D69 /* MapView+Convenience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		0431994622B4071800E82D69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0431995122B40B4B00E82D69 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		0431995522B418DF00E82D69 /* PhotoAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumViewController.swift; sourceTree = "<group>"; };
+		0431995822B41D5D00E82D69 /* MapView+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+Convenience.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		0431993622B4071700E82D69 /* UdacityVirtualtourist */ = {
 			isa = PBXGroup;
 			children = (
+				0431995722B41D3700E82D69 /* Extensions */,
 				0431995022B4077000E82D69 /* Models */,
 				0431993722B4071700E82D69 /* AppDelegate.swift */,
 				0431994C22B4073900E82D69 /* View Controllers */,
@@ -108,6 +111,14 @@
 				0431993E22B4071700E82D69 /* UdacityVirtualtourist.xcdatamodeld */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		0431995722B41D3700E82D69 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0431995822B41D5D00E82D69 /* MapView+Convenience.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,6 +193,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0431993822B4071700E82D69 /* AppDelegate.swift in Sources */,
+				0431995922B41D5D00E82D69 /* MapView+Convenience.swift in Sources */,
 				0431994022B4071700E82D69 /* UdacityVirtualtourist.xcdatamodeld in Sources */,
 				0431995222B40B4B00E82D69 /* MapViewController.swift in Sources */,
 				0431995622B418DF00E82D69 /* PhotoAlbumViewController.swift in Sources */,

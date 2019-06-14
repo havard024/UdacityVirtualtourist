@@ -17,15 +17,15 @@ class MapViewController: UIViewController {
     
     // MARK: - Properties for MapView
     private let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
-    private let regionRadius: CLLocationDistance = 1000
     private let dummyAnnotationCoordinate = CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661)
+    private var selectedAnnotation: MKPointAnnotation?
 
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.centerMapOnLocation(location: initialLocation)
-        self.addAnnotation(coordinate: dummyAnnotationCoordinate)
+        mapView.centerMapOnLocation(location: initialLocation)
+        mapView.addPointAnnotation(coordinate: dummyAnnotationCoordinate)
         mapView.delegate = self
     }
     
@@ -43,20 +43,15 @@ class MapViewController: UIViewController {
         handleGesture(location: location)
     }
     
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? PhotoAlbumViewController, let annotationView = sender as? MKAnnotationView, let annotation = annotationView.annotation as? MKPointAnnotation {
+                viewController.selectedAnnotation = annotation
+        }
+     }
+    
     // MARK: - Helper Functions
-    
-    func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
-                                                  latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
-        mapView.setRegion(coordinateRegion, animated: true)
-    }
-    
-    func addAnnotation(coordinate: CLLocationCoordinate2D) {
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = coordinate
-        mapView.addAnnotation(annotation)
-        debugPrint("addAnnotation: coordinate \(coordinate)")
-    }
     
     func handleGesture(location: CGPoint) {
         let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
@@ -66,7 +61,7 @@ class MapViewController: UIViewController {
             if subview.isKind(of: NSClassFromString("_MKBezierPathView")!) {
                 debugPrint("Clicked on existing annotation don't add a new!")
             } else {
-                addAnnotation(coordinate: coordinate)
+                mapView.addPointAnnotation(coordinate: coordinate)
             }
         } else {
             // Can this happen? Assume not
@@ -77,7 +72,8 @@ class MapViewController: UIViewController {
 // MARK: - MKMapViewDelegate
 
 extension MapViewController: MKMapViewDelegate {
+    #warning("Sometimes didSelect can be triggered after a gesture handler. This is not intentional and should be fixed somehow so that it is consistent that it either navigates or not every times.")
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        performSegue(withIdentifier: "photoAlbum", sender: nil)
+        performSegue(withIdentifier: "photoAlbum", sender: view)
     }
 }

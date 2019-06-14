@@ -56,10 +56,10 @@
             </objects>
             <point key="canvasLocation" x="1844.9275362318842" y="135.9375"/>
         </scene>
-        <!--View Controller-->
+        <!--Photo Album View Controller-->
         <scene sceneID="nTO-4I-Jdt">
             <objects>
-                <viewController id="L5O-TR-XFi" sceneMemberID="viewController">
+                <viewController id="L5O-TR-XFi" customClass="PhotoAlbumViewController" customModule="UdacityVirtualtourist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ozo-Lm-sMs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -110,6 +110,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Kav-aq-4Q1"/>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="n9S-tE-KnR" id="bv0-VJ-ZSM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RIs-Ma-6uH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
