@@ -18,12 +18,14 @@ class MapViewController: UIViewController {
     // MARK: - Properties for MapView
     private let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
     private let regionRadius: CLLocationDistance = 1000
+    private let dummyAnnotationCoordinate = CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661)
 
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.centerMapOnLocation(location: initialLocation)
+        self.addDummyAnnotation(coordinate: dummyAnnotationCoordinate)
     }
     
     // MARK: - IBActions
@@ -34,6 +36,12 @@ class MapViewController: UIViewController {
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate,
                                                   latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
+    }
+    
+    func addDummyAnnotation(coordinate: CLLocationCoordinate2D) {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = coordinate
+        mapView.addAnnotation(annotation)
     }
 
 }
