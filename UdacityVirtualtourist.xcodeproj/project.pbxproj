@@ -8,22 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		0431993822B4071700E82D69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431993722B4071700E82D69 /* AppDelegate.swift */; };
-		0431993A22B4071700E82D69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431993922B4071700E82D69 /* ViewController.swift */; };
 		0431993D22B4071700E82D69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0431993B22B4071700E82D69 /* Main.storyboard */; };
 		0431994022B4071700E82D69 /* UdacityVirtualtourist.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0431993E22B4071700E82D69 /* UdacityVirtualtourist.xcdatamodeld */; };
 		0431994222B4071800E82D69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0431994122B4071800E82D69 /* Assets.xcassets */; };
 		0431994522B4071800E82D69 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0431994322B4071800E82D69 /* LaunchScreen.storyboard */; };
+		0431995222B40B4B00E82D69 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431995122B40B4B00E82D69 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0431993422B4071700E82D69 /* UdacityVirtualtourist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UdacityVirtualtourist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0431993722B4071700E82D69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		0431993922B4071700E82D69 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0431993C22B4071700E82D69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0431993F22B4071700E82D69 /* UdacityVirtualtourist.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UdacityVirtualtourist.xcdatamodel; sourceTree = "<group>"; };
 		0431994122B4071800E82D69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0431994422B4071800E82D69 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0431994622B4071800E82D69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0431995122B40B4B00E82D69 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +69,7 @@
 		0431994C22B4073900E82D69 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				0431993922B4071700E82D69 /* ViewController.swift */,
+				0431995122B40B4B00E82D69 /* MapViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -178,9 +178,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0431993A22B4071700E82D69 /* ViewController.swift in Sources */,
 				0431993822B4071700E82D69 /* AppDelegate.swift in Sources */,
 				0431994022B4071700E82D69 /* UdacityVirtualtourist.xcdatamodeld in Sources */,
+				0431995222B40B4B00E82D69 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
