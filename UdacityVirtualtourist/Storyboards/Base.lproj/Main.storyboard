@@ -22,7 +22,6 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="uZi-zH-0NO" appends="YES" id="VAS-Uu-yFp"/>
                                     <outletCollection property="gestureRecognizers" destination="QmC-Mx-N4o" appends="YES" id="T4Y-jh-XmU"/>
                                 </connections>
                             </mapView>
@@ -43,11 +42,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ajF-jX-6ny" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="uZi-zH-0NO">
-                    <connections>
-                        <action selector="handleTap:" destination="tZ7-vH-gf3" id="OoL-C2-6Xw"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="QmC-Mx-N4o">
                     <connections>
                         <action selector="handleLongPress:" destination="tZ7-vH-gf3" id="Z0Q-t2-V05"/>

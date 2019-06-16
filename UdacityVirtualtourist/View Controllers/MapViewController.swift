@@ -31,16 +31,11 @@ class MapViewController: UIViewController {
     
     // MARK: - IBActions
     
-    @IBAction func handleTap(_ sender: UITapGestureRecognizer) {
-        let location = sender.location(in: mapView)
-        debugPrint("handleTap: location \(location)")
-        handleGesture(location: location)
-    }
-    
     @IBAction func handleLongPress(_ sender: UILongPressGestureRecognizer) {
         let location = sender.location(in: mapView)
         debugPrint("handleLongPress: location \(location)")
-        handleGesture(location: location)
+        let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
+        mapView.addPointAnnotation(coordinate: coordinate)
     }
     
     // MARK: - Navigation
@@ -52,27 +47,11 @@ class MapViewController: UIViewController {
      }
     
     // MARK: - Helper Functions
-    
-    func handleGesture(location: CGPoint) {
-        let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
-        #warning("Is this a safe way to detect if map annotation was clicked?")
-        if let subview = mapView.hitTest(location, with: nil) {
-            debugPrint("Clicked on subview: \(subview)")
-            if subview.isKind(of: NSClassFromString("_MKBezierPathView")!) {
-                debugPrint("Clicked on existing annotation don't add a new!")
-            } else {
-                mapView.addPointAnnotation(coordinate: coordinate)
-            }
-        } else {
-            // Can this happen? Assume not
-        }
-    }
 }
 
 // MARK: - MKMapViewDelegate
 
 extension MapViewController: MKMapViewDelegate {
-    #warning("Sometimes didSelect can be triggered after a gesture handler. This is not intentional and should be fixed somehow so that it is consistent that it either navigates or not every times.")
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         performSegue(withIdentifier: "photoAlbum", sender: view)
     }
