@@ -132,3 +132,12 @@ extension PhotoAlbumViewController: UICollectionViewDelegateFlowLayout {
         return sectionInsets.left
     }
 }
+
+// MARK: - UICollectionViewDelegate
+
+extension PhotoAlbumViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        photos.remove(at: indexPath.item)
+        collectionView.deleteItems(at: [indexPath])
+    }
+}
