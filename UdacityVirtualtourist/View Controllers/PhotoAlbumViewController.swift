@@ -9,12 +9,18 @@
 import UIKit
 import MapKit
 
+// Note: Followed the following tutorial to set up the collection view: https://www.raywenderlich.com/9334-uicollectionview-tutorial-getting-started
 class PhotoAlbumViewController: UIViewController {
 
     var selectedAnnotation: MKPointAnnotation!
     var photos: [FlickrPhoto] = []
     private let reuseIdentifier = "PhotoCell"
-    
+    private let itemsPerRow: CGFloat = 3
+    private let sectionInsets = UIEdgeInsets(top: 50.0,
+                                             left: 20.0,
+                                             bottom: 50.0,
+                                             right: 20.0)
+
     // MARK: - IBOutlets
     
     @IBOutlet weak var mapView: MKMapView!
@@ -35,6 +41,8 @@ class PhotoAlbumViewController: UIViewController {
         mapView.disableUserInteraction()
         
         collectionView.dataSource = self
+        collectionView.delegate = self
+        
         #warning("Only fetch images if there are none stored locally for given pin")
         fetchImagesFromFlickr()
     }
@@ -86,5 +94,31 @@ extension PhotoAlbumViewController: UICollectionViewDataSource {
         cell.backgroundColor = .black
         
         return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension PhotoAlbumViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
     }
 }
