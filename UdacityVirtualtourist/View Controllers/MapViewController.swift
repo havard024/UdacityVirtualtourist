@@ -35,7 +35,7 @@ class MapViewController: UIViewController {
             debugPrint("Fetched pins from core data: \(result)")
             result.forEach { pin in
                 let coordinate = CLLocationCoordinate2D(latitude: pin.latitude, longitude: pin.longitude)
-                mapView.addPointAnnotation(coordinate: coordinate)
+                mapView.addPinToMap(pin: pin)
             }
         } catch {
             // This is bad
@@ -69,7 +69,7 @@ class MapViewController: UIViewController {
         
         do {
             try DataController.shared.viewContext.save()
-            mapView.addPointAnnotation(coordinate: coordinate)
+            mapView.addPinToMap(pin: pin)
         } catch {
             // TODO: Notify user about error
         }

@@ -15,11 +15,13 @@ extension MKMapView {
         self.setRegion(coordinateRegion, animated: true)
     }
 
-    func addPointAnnotation(coordinate: CLLocationCoordinate2D) {
+    func addPinToMap(pin: Pin) {
+        let coordinate = CLLocationCoordinate2D(latitude: pin.latitude, longitude: pin.longitude)
         let annotation = MKPointAnnotation()
         annotation.coordinate = coordinate
+        annotation.title = pin.objectID.uriRepresentation().absoluteString
         self.addAnnotation(annotation)
-        debugPrint("addPointAnnotation: coordinate \(coordinate)")
+        debugPrint("addPointAnnotation: coordinate \(coordinate) with id: \(annotation.title)")
     }
     
     func disableUserInteraction() {
