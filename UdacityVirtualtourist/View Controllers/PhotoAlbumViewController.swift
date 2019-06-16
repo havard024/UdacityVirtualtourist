@@ -8,12 +8,13 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 // Note: Followed the following tutorial to set up the collection view: https://www.raywenderlich.com/9334-uicollectionview-tutorial-getting-started
 class PhotoAlbumViewController: UIViewController {
 
     var selectedPin: Pin!
-    var photos: [FlickrPhoto] = []
+    var photos: [Photo] = []
     private let reuseIdentifier = "PhotoCell"
     private let itemsPerRow: CGFloat = 3
     private let sectionInsets = UIEdgeInsets(top: 50.0,
@@ -43,13 +44,35 @@ class PhotoAlbumViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        let fetchRequest: NSFetchRequest<Photo> = Photo.fetchRequest()
+        let predicate = NSPredicate(format: "pin == %@", selectedPin)
+        fetchRequest.predicate = predicate
+        
+        do {
+            let result = try DataController.shared.viewContext.fetch(fetchRequest)
+            self.photos = result
+            collectionView.reloadData()
+            debugPrint("Result: \(result)")
+        } catch {
+            debugPrint("Error: \(error)")
+        }
+        if let photos = selectedPin.photos, photos.count > 0 {
+            debugPrint("Use existing images...")
+            
+        } else {
+            fetchImagesFromFlickr()
+        }
         #warning("Only fetch images if there are none stored locally for given pin")
-        fetchImagesFromFlickr()
+        //
     }
     
     // MARK: - IBActions
     
     @IBAction func newCollectionTapped(_ sender: Any) {
+        photos.forEach{ DataController.shared.viewContext.delete($0) }
+        try? DataController.shared.viewContext.save()
+        photos.removeAll()
+        collectionView.reloadData()
         fetchImagesFromFlickr()
     }
     
@@ -63,17 +86,15 @@ class PhotoAlbumViewController: UIViewController {
                 debugPrint(error)
             } else {
                 debugPrint(photos)
-                self.photos = photos
-                self.collectionView.reloadData()
-                photos.map { photo in
-                    FlickrAPI.shared.fetchImage(photo.url_m) { error, image in
-                        if let error = error {
-                            debugPrint(error)
-                        } else {
-                            debugPrint("Successfully downloaded image")
-                        }
-                    }
+                var corePhotos: [Photo] = []
+                photos.forEach { p in
+                    let photo = Photo(context: DataController.shared.viewContext)
+                    photo.url =  URL(string: p.url_m)!
+                    try? DataController.shared.viewContext.save()
+                    corePhotos.append(photo)
                 }
+                self.photos = corePhotos
+                self.collectionView.reloadData()
             }
             
         }
@@ -94,12 +115,23 @@ extension PhotoAlbumViewController: UICollectionViewDataSource {
         // Configure the cell
         
         cell.backgroundColor = .gray
-        FlickrAPI.shared.fetchImage(item.url_m) { error, image in
-            if let image = image {
-                cell.backgroundColor = nil
-                cell.imageView.image = image
-            } else {
-                cell.backgroundColor = .red
+        
+        if let data = item.image {
+            cell.backgroundColor = nil
+            cell.imageView.image = UIImage(data: data)!
+        } else {
+            FlickrAPI.shared.fetchImage(item.url!) { error, data in
+                if let data = data {
+                    let image = UIImage(data: data)!
+                    cell.backgroundColor = nil
+                    cell.imageView.image = image
+                    let photo = Photo(context: DataController.shared.viewContext)
+                    photo.image = data
+                    photo.pin = self.selectedPin
+                    try? DataController.shared.viewContext.save()
+                } else {
+                    cell.backgroundColor = .red
+                }
             }
         }
         
@@ -137,7 +169,9 @@ extension PhotoAlbumViewController: UICollectionViewDelegateFlowLayout {
 
 extension PhotoAlbumViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        photos.remove(at: indexPath.item)
+        let p = photos.remove(at: indexPath.item)
+        DataController.shared.viewContext.delete(p)
         collectionView.deleteItems(at: [indexPath])
+        try? DataController.shared.viewContext.save()
     }
 }

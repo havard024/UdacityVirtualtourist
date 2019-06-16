@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class FlickrResponse: Codable {
     let photos: FlickrPhotos

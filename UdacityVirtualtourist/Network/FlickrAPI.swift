@@ -152,11 +152,9 @@ final class FlickrAPI {
         task.resume()
     }
     
-    func fetchImage(_ url: String, completion: @escaping (Error?, UIImage?) -> Void) {
+    func fetchImage(_ imageURL: URL, completion: @escaping (Error?, Data?) -> Void) {
         
-        let imageURL = URL(string: url)
-        
-        let task = URLSession.shared.dataTask(with: imageURL!) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: imageURL) { (data, response, error) in
             if error == nil {
                 
                 guard let data = data else {
@@ -166,10 +164,8 @@ final class FlickrAPI {
                     return
                 }
                 
-                let downloadImage = UIImage(data: data)!
-                
                 DispatchQueue.main.async {
-                    completion(nil, downloadImage)
+                    completion(nil, data)
                 }
             } else {
                 DispatchQueue.main.async {
