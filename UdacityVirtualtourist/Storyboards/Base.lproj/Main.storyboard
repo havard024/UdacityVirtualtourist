@@ -23,6 +23,7 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="QmC-Mx-N4o" appends="YES" id="T4Y-jh-XmU"/>
+                                    <outletCollection property="gestureRecognizers" destination="WU0-Mm-dw7" appends="YES" id="QFX-Be-fT3"/>
                                 </connections>
                             </mapView>
                         </subviews>
@@ -47,6 +48,11 @@
                         <action selector="handleLongPress:" destination="tZ7-vH-gf3" id="Z0Q-t2-V05"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <tapGestureRecognizer id="WU0-Mm-dw7">
+                    <connections>
+                        <action selector="handleTap:" destination="tZ7-vH-gf3" id="sMJ-9L-FGz"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1844.9275362318842" y="135.9375"/>
         </scene>
