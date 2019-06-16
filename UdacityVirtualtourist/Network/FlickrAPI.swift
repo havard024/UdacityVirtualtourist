@@ -9,18 +9,6 @@
 import Foundation
 import UIKit
 
-class FlickrResponse: Codable {
-    let photos: FlickrPhotos
-}
-
-class FlickrPhotos: Codable {
-    let photo: [FlickrPhoto]
-}
-
-class FlickrPhoto: Codable {
-    let url_m: String
-}
-
 struct Constants {
     
     struct FlickrURLParams {
