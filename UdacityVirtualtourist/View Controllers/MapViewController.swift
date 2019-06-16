@@ -25,7 +25,6 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.centerMapOnLocation(location: initialLocation)
-        mapView.addPointAnnotation(coordinate: dummyAnnotationCoordinate)
         mapView.delegate = self
     }
     

@@ -18,6 +18,7 @@
 		0431995B22B420C800E82D69 /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431995A22B420C800E82D69 /* FlickrAPI.swift */; };
 		0488AD7A22B6594500084C22 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0488AD7922B6594500084C22 /* PhotoCollectionViewCell.swift */; };
 		0488AD7D22B65CF300084C22 /* Flickr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0488AD7C22B65CF300084C22 /* Flickr.swift */; };
+		0488AD7F22B660B400084C22 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0488AD7E22B660B400084C22 /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		0431995A22B420C800E82D69 /* FlickrAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
 		0488AD7922B6594500084C22 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		0488AD7C22B65CF300084C22 /* Flickr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flickr.swift; sourceTree = "<group>"; };
+		0488AD7E22B660B400084C22 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			children = (
 				0431993E22B4071700E82D69 /* UdacityVirtualtourist.xcdatamodeld */,
 				0488AD7C22B65CF300084C22 /* Flickr.swift */,
+				0488AD7E22B660B400084C22 /* DataController.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				0431995922B41D5D00E82D69 /* MapView+Convenience.swift in Sources */,
 				0488AD7D22B65CF300084C22 /* Flickr.swift in Sources */,
 				0431994022B4071700E82D69 /* UdacityVirtualtourist.xcdatamodeld in Sources */,
+				0488AD7F22B660B400084C22 /* DataController.swift in Sources */,
 				0431995B22B420C800E82D69 /* FlickrAPI.swift in Sources */,
 				0488AD7A22B6594500084C22 /* PhotoCollectionViewCell.swift in Sources */,
 				0431995222B40B4B00E82D69 /* MapViewController.swift in Sources */,
