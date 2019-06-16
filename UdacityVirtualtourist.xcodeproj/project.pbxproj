@@ -16,6 +16,7 @@
 		0431995622B418DF00E82D69 /* PhotoAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431995522B418DF00E82D69 /* PhotoAlbumViewController.swift */; };
 		0431995922B41D5D00E82D69 /* MapView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431995822B41D5D00E82D69 /* MapView+Convenience.swift */; };
 		0431995B22B420C800E82D69 /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431995A22B420C800E82D69 /* FlickrAPI.swift */; };
+		0488AD7A22B6594500084C22 /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0488AD7922B6594500084C22 /* PhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		0431995522B418DF00E82D69 /* PhotoAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumViewController.swift; sourceTree = "<group>"; };
 		0431995822B41D5D00E82D69 /* MapView+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapView+Convenience.swift"; sourceTree = "<group>"; };
 		0431995A22B420C800E82D69 /* FlickrAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
+		0488AD7922B6594500084C22 /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		0431993622B4071700E82D69 /* UdacityVirtualtourist */ = {
 			isa = PBXGroup;
 			children = (
+				0488AD7B22B6594A00084C22 /* Views */,
 				0431995722B41D3700E82D69 /* Extensions */,
 				0431995022B4077000E82D69 /* Models */,
 				0431993722B4071700E82D69 /* AppDelegate.swift */,
@@ -130,6 +133,14 @@
 				0431995A22B420C800E82D69 /* FlickrAPI.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		0488AD7B22B6594A00084C22 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0488AD7922B6594500084C22 /* PhotoCollectionViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +218,7 @@
 				0431995922B41D5D00E82D69 /* MapView+Convenience.swift in Sources */,
 				0431994022B4071700E82D69 /* UdacityVirtualtourist.xcdatamodeld in Sources */,
 				0431995B22B420C800E82D69 /* FlickrAPI.swift in Sources */,
+				0488AD7A22B6594500084C22 /* PhotoCollectionViewCell.swift in Sources */,
 				0431995222B40B4B00E82D69 /* MapViewController.swift in Sources */,
 				0431995622B418DF00E82D69 /* PhotoAlbumViewController.swift in Sources */,
 			);

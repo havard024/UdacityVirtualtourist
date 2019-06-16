@@ -88,10 +88,15 @@ extension PhotoAlbumViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCollectionViewCell
         
-        // Configure the cell
-        cell.backgroundColor = .black
+        let item = photos[indexPath.item]
+        // Configure the cell        
+        FlickrAPI.shared.fetchImage(item.url_m) { error, image in
+            if let image = image {
+                cell.imageView.image = image
+            }
+        }
         
         return cell
     }
