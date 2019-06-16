@@ -12,10 +12,13 @@ import MapKit
 class PhotoAlbumViewController: UIViewController {
 
     var selectedAnnotation: MKPointAnnotation!
+    var photos: [FlickrPhoto] = []
+    private let reuseIdentifier = "PhotoCell"
     
     // MARK: - IBOutlets
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     // MARK: - View Lifecycle
     
@@ -31,6 +34,7 @@ class PhotoAlbumViewController: UIViewController {
         mapView.addAnnotation(selectedAnnotation)
         mapView.disableUserInteraction()
         
+        collectionView.dataSource = self
         #warning("Only fetch images if there are none stored locally for given pin")
         fetchImagesFromFlickr()
     }
@@ -51,6 +55,8 @@ class PhotoAlbumViewController: UIViewController {
                 debugPrint(error)
             } else {
                 debugPrint(photos)
+                self.photos = photos
+                self.collectionView.reloadData()
                 photos.map { photo in
                     FlickrAPI.shared.fetchImage(photo.url_m) { error, image in
                         if let error = error {
@@ -63,5 +69,22 @@ class PhotoAlbumViewController: UIViewController {
             }
             
         }
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension PhotoAlbumViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.photos.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        
+        // Configure the cell
+        cell.backgroundColor = .black
+        
+        return cell
     }
 }
