@@ -49,7 +49,7 @@ class MapViewController: UIViewController {
         let location = sender.location(in: mapView)
         debugPrint("handleLongPress: location \(location)")
         let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
-        mapView.addPointAnnotation(coordinate: coordinate)
+        addPin(coordinate)
     }
     
     // MARK: - Navigation
@@ -61,6 +61,19 @@ class MapViewController: UIViewController {
      }
     
     // MARK: - Helper Functions
+    
+    private func addPin(_ coordinate: CLLocationCoordinate2D) {
+        let pin = Pin(context: DataController.shared.viewContext)
+        pin.latitude = coordinate.latitude
+        pin.longitude = coordinate.longitude
+        
+        do {
+            try DataController.shared.viewContext.save()
+            mapView.addPointAnnotation(coordinate: coordinate)
+        } catch {
+            // TODO: Notify user about error
+        }
+    }
 }
 
 // MARK: - MKMapViewDelegate
