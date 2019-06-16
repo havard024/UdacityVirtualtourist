@@ -8,9 +8,10 @@
 
 import UIKit
 import MapKit
+import CoreData
 
 class MapViewController: UIViewController {
-
+    
     // MARK: - IBOutlets
     
     @IBOutlet weak var mapView: MKMapView!
@@ -26,6 +27,20 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         mapView.centerMapOnLocation(location: initialLocation)
         mapView.delegate = self
+        
+        let fetchRequest: NSFetchRequest<Pin> = Pin.fetchRequest()
+        
+        do {
+            let result = try DataController.shared.viewContext.fetch(fetchRequest)
+            debugPrint("Fetched pins from core data: \(result)")
+            result.forEach { pin in
+                let coordinate = CLLocationCoordinate2D(latitude: pin.latitude, longitude: pin.longitude)
+                mapView.addPointAnnotation(coordinate: coordinate)
+            }
+        } catch {
+            // This is bad
+            debugPrint("Error: \(error)")
+        }
     }
     
     // MARK: - IBActions
