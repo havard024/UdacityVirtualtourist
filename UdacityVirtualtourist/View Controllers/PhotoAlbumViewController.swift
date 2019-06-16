@@ -11,7 +11,7 @@ import MapKit
 
 class PhotoAlbumViewController: UIViewController {
 
-    var selectedAnnotation: MKPointAnnotation?
+    var selectedAnnotation: MKPointAnnotation!
     
     // MARK: - IBOutlets
     
@@ -30,5 +30,38 @@ class PhotoAlbumViewController: UIViewController {
         mapView.centerMapOnLocation(location: CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude), regionRadius: 100)
         mapView.addAnnotation(selectedAnnotation)
         mapView.disableUserInteraction()
+        
+        #warning("Only fetch images if there are none stored locally for given pin")
+        fetchImagesFromFlickr()
+    }
+    
+    // MARK: - IBActions
+    
+    @IBAction func newCollectionTapped(_ sender: Any) {
+        fetchImagesFromFlickr()
+    }
+    
+    // MARK: - Helper Functions
+    
+    private func fetchImagesFromFlickr() {
+        // Send the request
+        let coordinate = selectedAnnotation.coordinate
+        FlickrAPI.shared.performFlickrSearch(longitude: coordinate.longitude, latitude: coordinate.latitude) { error, photos in
+            if let error = error {
+                debugPrint(error)
+            } else {
+                debugPrint(photos)
+                photos.map { photo in
+                    FlickrAPI.shared.fetchImage(photo.url_m) { error, image in
+                        if let error = error {
+                            debugPrint(error)
+                        } else {
+                            debugPrint("Successfully downloaded image")
+                        }
+                    }
+                }
+            }
+            
+        }
     }
 }
