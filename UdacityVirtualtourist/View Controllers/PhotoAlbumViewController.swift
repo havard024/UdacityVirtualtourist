@@ -91,10 +91,15 @@ extension PhotoAlbumViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PhotoCollectionViewCell
         
         let item = photos[indexPath.item]
-        // Configure the cell        
+        // Configure the cell
+        
+        cell.backgroundColor = .gray
         FlickrAPI.shared.fetchImage(item.url_m) { error, image in
             if let image = image {
+                cell.backgroundColor = nil
                 cell.imageView.image = image
+            } else {
+                cell.backgroundColor = .red
             }
         }
         
