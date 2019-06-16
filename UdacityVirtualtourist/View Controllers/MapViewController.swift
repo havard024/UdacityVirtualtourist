@@ -20,7 +20,8 @@ class MapViewController: UIViewController {
     private let initialLocation = CLLocation(latitude: 21.282778, longitude: -157.829444)
     private let dummyAnnotationCoordinate = CLLocationCoordinate2D(latitude: 21.283921, longitude: -157.831661)
     private var selectedAnnotation: MKPointAnnotation?
-
+    private var pins: [Pin] = []
+    
     // MARK: - View Lifecycle
 
     override func viewDidLoad() {
@@ -33,6 +34,7 @@ class MapViewController: UIViewController {
         do {
             let result = try DataController.shared.viewContext.fetch(fetchRequest)
             debugPrint("Fetched pins from core data: \(result)")
+            self.pins = result
             result.forEach { pin in
                 let coordinate = CLLocationCoordinate2D(latitude: pin.latitude, longitude: pin.longitude)
                 mapView.addPinToMap(pin: pin)
@@ -56,7 +58,12 @@ class MapViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? PhotoAlbumViewController, let annotationView = sender as? MKAnnotationView, let annotation = annotationView.annotation as? MKPointAnnotation {
-                viewController.selectedAnnotation = annotation
+                if let objectIDURL = URL(string: annotation.title!) {
+                    let coordinator: NSPersistentStoreCoordinator? = DataController.shared.viewContext.persistentStoreCoordinator
+                    let managedObjectID = coordinator?.managedObjectID(forURIRepresentation: objectIDURL)
+                    let pin = pins.first(where: { $0.objectID == managedObjectID })
+                    viewController.selectedPin = pin
+                }
         }
      }
     

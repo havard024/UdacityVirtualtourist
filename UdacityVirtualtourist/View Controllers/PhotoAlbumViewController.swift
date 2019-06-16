@@ -12,7 +12,7 @@ import MapKit
 // Note: Followed the following tutorial to set up the collection view: https://www.raywenderlich.com/9334-uicollectionview-tutorial-getting-started
 class PhotoAlbumViewController: UIViewController {
 
-    var selectedAnnotation: MKPointAnnotation!
+    var selectedPin: Pin!
     var photos: [FlickrPhoto] = []
     private let reuseIdentifier = "PhotoCell"
     private let itemsPerRow: CGFloat = 3
@@ -31,13 +31,13 @@ class PhotoAlbumViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let selectedAnnotation = selectedAnnotation else {
-            preconditionFailure("You need to set the selectedAnnotation in this view controller else this view is rendered useless.")
+        guard let selectedPin = selectedPin else {
+            preconditionFailure("You need to set the selectedPin in this view controller else this view is rendered useless.")
         }
         
-        let coordinate = selectedAnnotation.coordinate
+        let coordinate = CLLocationCoordinate2D(latitude: selectedPin.latitude, longitude: selectedPin.longitude)
         mapView.centerMapOnLocation(location: CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude), regionRadius: 100)
-        mapView.addAnnotation(selectedAnnotation)
+        mapView.addPinToMap(pin: selectedPin)
         mapView.disableUserInteraction()
         
         collectionView.dataSource = self
@@ -57,7 +57,7 @@ class PhotoAlbumViewController: UIViewController {
     
     private func fetchImagesFromFlickr() {
         // Send the request
-        let coordinate = selectedAnnotation.coordinate
+        let coordinate = CLLocationCoordinate2D(latitude: selectedPin.latitude, longitude: selectedPin.longitude)
         FlickrAPI.shared.performFlickrSearch(longitude: coordinate.longitude, latitude: coordinate.latitude) { error, photos in
             if let error = error {
                 debugPrint(error)
